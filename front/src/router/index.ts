@@ -1,20 +1,32 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import HomePage from '../components/template/HomePage.vue'
+import CqTimeLine from '../components/orgasms/CqTimeLine.vue'
+import CqMap from '../components/orgasms/CqMap.vue'
+import CqRank from '../components/orgasms/CqRank.vue'
+import CqMyPage from '../components/orgasms/CqMyPage.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView,
-  },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ '../views/AboutView.vue'),
+    component: HomePage,
+    children: [
+      {
+        path: '',
+        component: CqTimeLine
+      },
+      {
+        path: 'map',
+        component: CqMap
+      },
+      {
+        path: 'mypage',
+        component: CqMyPage
+      },
+      {
+        path: 'rank',
+        component: CqRank
+      },
+    ]
   },
 ]
 
